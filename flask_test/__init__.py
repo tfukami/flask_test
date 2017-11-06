@@ -11,6 +11,14 @@ def index():
 def get_sentence(sentence):
     return render_template('index.html', sentence=sentence)
 
+@app.route('/post', methods=['POST'])
+def pos():
+    if request.method == 'POST':
+        sentence=request.form['name']
+    else:
+        sentence='no name'
+    return render_template('index.html', sentense=sentence)
+
 @ app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
